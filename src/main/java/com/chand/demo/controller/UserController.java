@@ -31,6 +31,15 @@ public class UserController {
 			return user;
 	}
 	
+	//Get one user
+		@RequestMapping(value="/deleteUser/{id}", method = RequestMethod.DELETE)
+		public void deleteUser(@PathVariable int id) {
+			User user =userDao.deleteOne(id);
+			if(user==null)
+				throw new UserNotFoundException("id"+ id);
+		}
+	
+	
 	//retrieve all users
 	@RequestMapping(value="/users", method =RequestMethod.GET)
 	public List<User> getAllUsers(){
