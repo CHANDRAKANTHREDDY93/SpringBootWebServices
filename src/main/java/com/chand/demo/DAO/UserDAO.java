@@ -14,6 +14,7 @@ import com.chand.demo.data.User;
 public class UserDAO {
 
 	private static List<User> users = new ArrayList<>();
+	@SuppressWarnings("unused")
 	private static int userCount = 3;
 	
 	static {
