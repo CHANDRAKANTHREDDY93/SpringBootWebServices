@@ -1,7 +1,12 @@
 package com.chand.demo.data;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -9,8 +14,24 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(description="All details about the user. ")
+@Entity
 public class User {
 	
+	@OneToMany(mappedBy="user")
+	private List<Post> post;
+	
+	public List<Post> getPost() {
+		return post;
+	}
+	public void setPost(List<Post> post) {
+		this.post = post;
+	}
+	public User() {
+		
+	}
+	
+	@Id
+	@GeneratedValue
 	private int id;
 	@Size(min=2, message="Name should contain more than 3 characters")
 	@ApiModelProperty(notes="Name should have atleast 3 characters")
